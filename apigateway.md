@@ -1,11 +1,4 @@
-Create an API Gateway REST API
-aws apigateway create-rest-api --name "MyAPI" --description "My API Gateway"
 
-Get the Root Resource ID
-You need the root resource ID to create resources under it.
-
-API_ID=$(aws apigateway get-rest-apis --query "items[?name=='MyAPI'].id" --output text)
-ROOT_RESOURCE_ID=$(aws apigateway get-resources --rest-api-id $API_ID --query "items[0].id" --output text)
 
 Create a Resource (e.g., /hello)
 RESOURCE_ID=$(aws apigateway create-resource --rest-api-id $API_ID --parent-id $ROOT_RESOURCE_ID --path-part "hello" --query "id" --output text)
